@@ -161,7 +161,7 @@ module.exports = function(opts){
 }
 },{"./lib/beep":3}],3:[function(require,module,exports){
 module.exports = function (type) {
-    var ctx = new(window.audioContext || window.webkitAudioContext);
+    var ctx = new(window.AudioContext || window.webkitAudioContext);
     return function (duration, cb) {
 
         duration = +duration;
@@ -178,10 +178,15 @@ module.exports = function (type) {
         osc.type = type;
 
         osc.connect(ctx.destination);
-        osc.noteOn(0);
+        //osc.noteOn(0);
+
+        var start = osc.start ? osc.start.bind(osc) : osc.noteOn.bind(osc);
+        var stop = osc.stop ? osc.stop.bind(osc) : osc.noteOff.bind(osc);
+        start(0);
+
 
         setTimeout(function () {
-            osc.noteOff(0);
+            stop(0);
             cb();
         }, duration);
 
