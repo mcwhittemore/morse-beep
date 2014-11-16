@@ -1,16 +1,12 @@
 {
-  "name": "morse-beep",
+  "name": "morse-beep-demo",
   "version": "1.0.0",
-  "description": "A simple text to Morse Code player for the modern web",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "just a demo for morse beep",
+  "main": "example.js",
+  "private": true,
+  "dependencies": {
+    "browserify": "^6.3.2"
   },
-  "keywords": [
-    "morse",
-    "code",
-    "audioContext"
-  ],
-  "author": "Matthew Chase Whittemore",
-  "license": "MIT"
+  "devDependencies": {},
+  "homepage": "https://github.com/mcwhittemore/morse-beep"
 }
