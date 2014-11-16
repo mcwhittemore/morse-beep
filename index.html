@@ -1,17 +1,45 @@
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
 <style>
+	button{
+		background: white;
+		font-size: medium;
+	}
+	a{
+		text-decoration: none;
+		color: rgb(21, 119, 202);
+	}
+	body{
+		margin: auto;
+		width: 665px;
+		background: #efefef;
+		font-family: 'Open Sans', sans-serif;
+	}
+	h1{
+		text-align: center;
+	}
 	#example{
 		margin-left: 10px;
-		padding: 2px;
-		background: black;
-		color: rgb(3, 199, 3);
+		padding-left: 11px;
+		padding-top: 8px;
+		background: rgba(0, 0, 0, 0.17);
+		color: rgb(21, 119, 202);
+		line-height: 38px;
+	}
+	pre{
+		background: rgba(0, 0, 0, 0.17);
+		padding: 10px;
+		overflow: hidden;
+		overflow-wrap: break-word;
 	}
 </style>
 
 <a href="https://github.com/mcwhittemore/morse-beep"><h1>Morse Beep</h1></a>
 <h2>A simple text to Morse Code player for the modern web</h2>
 <div id="example">
-	<div id="output">Letters will show up as their sequence starts to play<br/></div>
-	<button id="talk">Enter Pharse</button>
+	<div id="output"></div>
+	<button id="talk">Enter Pharse</button><br/>
+	Letters will show up as their sequence starts to play
 </div>
 <script src="./compiled.js"></script>
 
