@@ -10,7 +10,7 @@ var lettersToMorse = {
 	"i": "ss",
 	"j": "slll",
 	"k": "lsl",
-	"l": "slll",
+	"l": "slss",
 	"m": "ll",
 	"n": "ls",
 	"o": "lll",
