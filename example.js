@@ -1,4 +1,4 @@
-var morse = require("../index.js");
+var morse = require("morse-beep");
 var code = morse();
 var output = document.getElementById("output");
 var talk = document.getElementById("talk");
@@ -8,11 +8,13 @@ code.on("start-letter", function(l){
 	output.innerHTML += l;
 });
 
+var beeping = false;
 var next = function(){
-	output.innerHTML += "<br/>";
 	var say = prompt("what to say?", "hello world");
 	if(say!==null){
-		code(say, next);
+		code(say, function(){
+			output.innerHTML += "<br/>";
+		});
 	}
 }
 

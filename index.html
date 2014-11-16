@@ -1,8 +1,18 @@
+<style>
+	#example{
+		margin-left: 10px;
+		padding: 2px;
+		background: black;
+		color: rgb(3, 199, 3);
+	}
+</style>
+
 <h1>Morse Beep</h1>
 <h2>A simple text to Morse Code player for the modern web</h2>
-<br/>
-<div id="output">Letters will show up as their sequence starts to play</div>
-<button id="talk">Enter Pharse</button>
+<div id="example">
+	<div id="output">Letters will show up as their sequence starts to play<br/></div>
+	<button id="talk">Enter Pharse</button>
+</div>
 <script src="./compiled.js"></script>
 
 <h2>index.html</h2>
@@ -25,11 +35,13 @@ code.on("start-letter", function(l){
 	output.innerHTML += l;
 });
 
+var beeping = false;
 var next = function(){
-	output.innerHTML += "<br/>";
 	var say = prompt("what to say?", "hello world");
 	if(say!==null){
-		code(say, next);
+		code(say, function(){
+			output.innerHTML += "<br/>";
+		});
 	}
 }
 

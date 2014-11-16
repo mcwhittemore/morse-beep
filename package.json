@@ -5,7 +5,8 @@
   "main": "example.js",
   "private": true,
   "dependencies": {
-    "browserify": "^6.3.2"
+    "browserify": "^6.3.2",
+    "morse-beep": "^1.0.0"
   },
   "devDependencies": {},
   "homepage": "https://github.com/mcwhittemore/morse-beep"
