@@ -9,13 +9,32 @@ code.on("start-letter", function(l){
 	output.innerHTML += l;
 });
 
-var beeping = false;
+
+var toPlay = [];
+var playing = false;
+
 var next = function(){
 	var say = prompt("what to say?", "hello world");
 	if(say!==null){
-		code(say, function(){
-			output.innerHTML += "<br/>";
-		});
+		if(playing){
+			toPlay.push(say);
+		}
+		else{
+			playing = true;
+			code(say, after);
+		}
+	}
+}
+
+var after = function(){
+	output.innerHTML += "<br/>";
+	if(toPlay.length==0){
+		playing = false;
+	}
+	else{
+		var next = toPlay[0];
+		toPlay = toPlay.slice(1);
+		code(next, after);
 	}
 }
 
