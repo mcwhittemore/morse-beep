@@ -1,0 +1,16 @@
+{
+  "name": "morse-beep",
+  "version": "1.0.0",
+  "description": "A simple text to Morse Code player for the modern web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "morse",
+    "code",
+    "audioContext"
+  ],
+  "author": "Matthew Chase Whittemore",
+  "license": "MIT"
+}
