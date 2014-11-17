@@ -82,42 +82,42 @@ var after = function(){
 talk.onclick = next;
 },{"morse-beep":2}],2:[function(require,module,exports){
 var lettersToMorse = {
-	"a": "sl",
-	"b": "lsss",
-	"c": "lsls",
-	"d": "lss",
-	"e": "s",
-	"f": "ssls",
-	"g": "lls",
-	"h": "ssss",
-	"i": "ss",
-	"j": "slll",
-	"k": "lsl",
-	"l": "slll",
-	"m": "ll",
-	"n": "ls",
-	"o": "lll",
-	"p": "slls",
-	"q": "llsl",
-	"r": "sls",
-	"s": "sss",
-	"t": "l",
-	"u": "ssl",
-	"v": "sssl",
-	"w": "sll",
-	"x": "lssl",
-	"y": "lsll",
-	"z": "llss",
-	"1": "sllll",
-	"2": "sslll",
-	"3": "sssll",
-	"4": "ssssl",
-	"5": "sssss",
-	"6": "lssss",
-	"7": "llsss",
-	"8": "lllss",
-	"9": "lllls",
-	"0": "lllll"
+	"a": "·−",
+	"b": "−···",
+	"c": "−·−·",
+	"d": "−··",
+	"e": "·",
+	"f": "··−·",
+	"g": "−−·",
+	"h": "····",
+	"i": "··",
+	"j": "·−−−",
+	"k": "−·−",
+	"l": "·−··",
+	"m": "−−",
+	"n": "−·",
+	"o": "−−−",
+	"p": "·−−·",
+	"q": "−−·−",
+	"r": "·−·",
+	"s": "···",
+	"t": "−",
+	"u": "··−",
+	"v": "···−",
+	"w": "·−−",
+	"x": "−··−",
+	"y": "−·−−",
+	"z": "−−··",
+	"1": "·−−−−",
+	"2": "··−−−",
+	"3": "···−−",
+	"4": "····−",
+	"5": "·····",
+	"6": "−····",
+	"7": "−−···",
+	"8": "−−−··",
+	"9": "−−−−·",
+	"0": "−−−−−"
 }
 
 module.exports = function(opts){
@@ -126,7 +126,7 @@ module.exports = function(opts){
 	var unit = opts.unit || 25;
 	var gap = opts.gap || 10;
 
-	var beeper = require("./lib/beep")(opts.beep || 0);
+	var beeper = require("./lib/beep")(0);
 
 	var beep = function(num, cb){
 		emit("start-beep");
@@ -158,7 +158,7 @@ module.exports = function(opts){
 		if(str.length){
 			var l = str[0];
 			str = str.slice(1);
-			if(l=="s"){
+			if(l=="·"){
 				short(function(){
 					parse(str,cb);
 				});
@@ -175,7 +175,6 @@ module.exports = function(opts){
 	}
 
 	var say = function(msg, cb){
-		cb = cb || function(){};
 		if(msg.length){
 			var l = msg[0];
 			emit("start-letter", l);
@@ -212,13 +211,20 @@ module.exports = function(opts){
 		}
 	}
 
-	say.on = function(key, fn){
+	var sayer = function(msg, cb){
+		cb = cb || function(){};
+		msg = msg.toLowerCase();
+		say(msg, cb);
+	}
+
+	sayer.on = function(key, fn){
 		listeners[key] = listeners[key] || [];
 		listeners[key].push(fn);
 	}
 
-	return say;
+	return sayer;
 }
+
 },{"./lib/beep":3}],3:[function(require,module,exports){
 module.exports = function (type) {
     var ctx = new(window.AudioContext || window.webkitAudioContext);
