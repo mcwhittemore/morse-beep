@@ -43,7 +43,7 @@ module.exports = function(opts){
 	var unit = opts.unit || 25;
 	var gap = opts.gap || 10;
 
-	var beeper = require("./lib/beep")(opts.beep || 0);
+	var beeper = require("./lib/beep")(0);
 
 	var beep = function(num, cb){
 		emit("start-beep");
