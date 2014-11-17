@@ -92,7 +92,6 @@ module.exports = function(opts){
 	}
 
 	var say = function(msg, cb){
-		cb = cb || function(){};
 		if(msg.length){
 			var l = msg[0];
 			emit("start-letter", l);
@@ -129,10 +128,16 @@ module.exports = function(opts){
 		}
 	}
 
-	say.on = function(key, fn){
+	var sayer = function(msg, cb){
+		cb = cb || function(){};
+		msg = msg.toLowerCase();
+		say(msg, cb);
+	}
+
+	sayer.on = function(key, fn){
 		listeners[key] = listeners[key] || [];
 		listeners[key].push(fn);
 	}
 
-	return say;
+	return sayer;
 }
