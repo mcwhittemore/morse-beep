@@ -5,6 +5,10 @@
 		background: white;
 		font-size: medium;
 	}
+	input{
+		background: #efefef;
+		font-size: medium;
+	}
 	a{
 		text-decoration: none;
 		color: rgb(21, 119, 202);
@@ -22,6 +26,7 @@
 		margin-left: 10px;
 		padding-left: 11px;
 		padding-top: 8px;
+		padding-bottom: 8px;
 		background: rgba(0, 0, 0, 0.17);
 		color: rgb(21, 119, 202);
 		line-height: 38px;
@@ -32,14 +37,20 @@
 		overflow: hidden;
 		overflow-wrap: break-word;
 	}
+	.waiting{
+		color: rgb(93, 125, 152);
+	}
+	.active{
+		color: rgb(199, 154, 58);
+	}
 </style>
 
 <a href="https://github.com/mcwhittemore/morse-beep"><h1>Morse Beep</h1></a>
 <h2>A simple text to Morse Code player for the modern web</h2>
 <div id="example">
 	<div id="output"></div>
-	<button id="talk">Enter Pharse</button><br/>
-	Letters will show up as their sequence starts to play
+	<input id="input" value="hello world">
+	<button id="talk">Queue Pharse</button><br/>
 </div>
 <script src="./compiled.js"></script>
 
