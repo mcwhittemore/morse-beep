@@ -7,35 +7,41 @@ A simple text to Morse Code player for the modern web
 ### index.html
 
 ```html
-<div id="output">Letters will show up as their sequence starts to play</div>
-<button id="talk">Enter Pharse</button>
 <script src="./compiled.js"></script>
 ```
 
-### example.js
+### example.js (compiled.js is made with browserify)
 
 ```js
-var morse = require("morse-beep");
-var code = morse();
-var output = document.getElementById("output");
-var talk = document.getElementById("talk");
-
-code.on("start-letter", function(l){
-	l = l == " " ? "&nbsp;" : l;
-	output.innerHTML += l;
+var MorseBeep = require("morse-beep");
+var beeper = MorseBeep();
+beeper("hello world", function(){
+	console.log("done");
 });
-
-var next = function(){
-	output.innerHTML += "<br/>";
-	var say = prompt("what to say?", "hello world");
-	if(say!==null){
-		code(say, next);
-	}
-}
-
-talk.onclick = next;
 ```
 
 ## API
 
-Docs to come
+### MorseBeep(opts)
+
+Creates a new beeper with the provided options. You should really make sure you only have one active beeper at a time. Maybe in the future I'll add support for that.
+
+**options**
+
+* unit: the length of a sigle `dit`
+* gap: the length between any two `dits` or `dahs`
+
+### beeper(msg, cb)
+
+a beeper takes a string and converts it into beeps. When the sequence is finished the callback is called.
+
+* msg: a string. Only 0-9, space, a-z, and A-Z will be beeped. All other charters will emit events but will not effect the played sounds.
+
+### beeper.on(event, cb)
+
+Beeper emits events through out the beeping processes.
+
+* start-letter: emited just before each letter is played
+* end-letter: emitted when each letter is finished
+* start-beep: emitted when a beep starts
+* end-beep: emitted whena  beed ends
