@@ -46,9 +46,11 @@ module.exports = function(opts){
 	var beeper = require("./lib/beep")(0);
 
 	var beep = function(num, cb){
-		emit("start-beep");
+		var type = num == unit ? "dit" : "dah";
+
+		emit("start-beep", type);
 		beeper(gap*num, function(){
-			emit("end-beep");
+			emit("end-beep", type);
 			setTimeout(cb, unit*gap);
 		});
 	}
